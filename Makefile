@@ -1,6 +1,6 @@
 # /* ~~~~~~ SOURCES ~~~~~~ */
 SRCS_DIR = ./srcs/
-SRCS =	
+SRCS =	parsing/ft_parsing.c \
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 

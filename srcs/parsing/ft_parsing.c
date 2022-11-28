@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 18:42:28 by mmrabet           #+#    #+#             */
-/*   Updated: 2022/11/28 18:42:28 by mmrabet          ###   ########.fr       */
+/*   Created: 2022/11/28 19:21:47 by mmrabet           #+#    #+#             */
+/*   Updated: 2022/11/28 19:21:47 by mmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./so_long.h"
+#include "./../so_long.h"
 
-int	main(void)
+void	ft_parsing(int fd)
 {
-	int	fd;
-
-	fd = open("./maps/Map.ber", O_RDONLY);
 	char	*line;
 	char	**map;
 	int		i;
@@ -33,23 +30,20 @@ int	main(void)
 			break ;
 		i++;
 	}
-	close(fd);
-	fd = open("./maps/Map.ber", O_RDONLY);
 	map = ft_calloc(i + 1, sizeof(char *));
 	if (!map)
-		return (-1);
+		return ;
+	printf("READ %zd", read(fd, line, 8250));
 	while (j < i)
 	{
 		map[j] = get_next_line(fd);
+		printf("%s", map[j]);
 		j++;
 	}
-	printf("%s", map[0]);
-	printf("%s", map[1]);
-	printf("%s", map[2]);
-	printf("%s", map[3]);
-	printf("%s", map[4]);
-	printf("%s", map[5]);
-	return (-1);
-	close(fd);
-	return (1);
+	// while (j > 0)
+	// {
+	// 	printf("%s", map[0]);
+	// 	j--;
+	// }
+	return ;
 }
