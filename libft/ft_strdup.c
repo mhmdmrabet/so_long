@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 13:25:03 by mmrabet           #+#    #+#             */
-/*   Updated: 2022/11/28 13:25:03 by mmrabet          ###   ########.fr       */
+/*   Created: 2022/11/09 14:10:39 by mmrabet           #+#    #+#             */
+/*   Updated: 2022/11/09 14:10:39 by mmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SO_LONG_H
-# define SO_LONG_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <string.h>
-# include <math.h>
+char	*ft_strdup(const char *s)
+{
+	char			*str;
+	unsigned int	s_len;
+	unsigned int	i;
 
-void	so_long(int fd);
-
-#endif
+	i = 0;
+	s_len = ft_strlen(s);
+	str = (char *)malloc(sizeof(char) * (s_len + 1));
+	if (!str)
+		return (NULL);
+	while (i < s_len)
+	{
+		str[i] = s[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}

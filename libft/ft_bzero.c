@@ -1,17 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 13:32:00 by mmrabet           #+#    #+#             */
-/*   Updated: 2022/11/28 13:32:00 by mmrabet          ###   ########.fr       */
+/*   Created: 2022/11/08 13:19:04 by mmrabet           #+#    #+#             */
+/*   Updated: 2022/11/08 13:19:04 by mmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	so_long(int fd)
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
 {
-	(void)fd;
-	return ;
+	size_t	i;
+	char	*str;
+
+	str = (char *) s;
+	i = 0;
+	while (i < n)
+	{
+		*str = '\0';
+		str++;
+		i++;
+	}
 }
