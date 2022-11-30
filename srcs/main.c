@@ -35,5 +35,9 @@ int	main(void)
 		printf("WALL : ERROR\n");
 	else
 		printf("WALL : SUCCESS\n");
+	if (ft_check_map(map) == 0)
+		printf("MAP : ERROR\n");
+	else
+		printf("MAP : SUCCESS\n");
 	return (0);
 }

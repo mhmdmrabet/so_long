@@ -58,17 +58,3 @@ int	ft_fill_map(const char *pathname, char **map, int len_map)
 	return (0);
 }
 
-int	ft_is_characters(char c)
-{
-	const char		*characters = "01CEP";
-	int				i;
-
-	i = 0;
-	while (characters[i])
-	{
-		if (characters[i] == c)
-			return (1);
-		i++;
-	}
-	return (0);
-}

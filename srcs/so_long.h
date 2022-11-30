@@ -20,6 +20,7 @@
 # include "./../libft/libft.h"
 
 void	ft_parsing(int fd);
+int		ft_check_map(char **map);
 int		ft_count_line(const char *pathname);
 int		ft_fill_map(const char *pathname, char **map, int len_map);
 int		ft_is_characters(char c);
