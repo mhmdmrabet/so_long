@@ -20,5 +20,12 @@
 # include "./../libft/libft.h"
 
 void	ft_parsing(int fd);
+int		ft_count_line(const char *pathname);
+int		ft_fill_map(const char *pathname, char **map, int len_map);
+int		ft_is_characters(char c);
+int		ft_is_wall_top_bottom(char *line);
+int		ft_is_border_wall(char *line);
+int		ft_is_border_map_ok(char **map, int len_map);
+int		ft_is_rectangle_map(char **map, int len_map);
 
 #endif

@@ -1,6 +1,8 @@
 # /* ~~~~~~ SOURCES ~~~~~~ */
 SRCS_DIR = ./srcs/
 SRCS =	parsing/ft_parsing.c \
+		parsing/ft_fill_map.c \
+		parsing/ft_check_wall.c \
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
 

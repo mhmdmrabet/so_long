@@ -12,16 +12,19 @@
 
 #include "./../so_long.h"
 
-void	ft_parsing(int fd)
+int	ft_count_line(const char *pathname)
 {
 	char	*line;
-	char	**map;
+	int		fd;
 	int		i;
-	int		j;
 
+	fd = open(pathname, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	i = 0;
-	j = 0;
 	line = ft_calloc(1, 1);
+	if (!line)
+		return (free(line), -1);
 	while (line)
 	{
 		free(line);
@@ -30,20 +33,42 @@ void	ft_parsing(int fd)
 			break ;
 		i++;
 	}
-	map = ft_calloc(i + 1, sizeof(char *));
+	close(fd);
+	return (i);
+}
+
+int	ft_fill_map(const char *pathname, char **map, int len_map)
+{
+	int		fd;
+	int		i;
+
+	fd = open(pathname, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	if (!map)
-		return ;
-	printf("READ %zd", read(fd, line, 8250));
-	while (j < i)
+		return (-1);
+	i = 0;
+	while (i < len_map)
 	{
-		map[j] = get_next_line(fd);
-		printf("%s", map[j]);
-		j++;
+		map[i] = get_next_line(fd);
+		i++;
 	}
-	// while (j > 0)
-	// {
-	// 	printf("%s", map[0]);
-	// 	j--;
-	// }
-	return ;
+	map[len_map] = NULL;
+	close(fd);
+	return (0);
+}
+
+int	ft_is_characters(char c)
+{
+	const char		*characters = "01CEP";
+	int				i;
+
+	i = 0;
+	while (characters[i])
+	{
+		if (characters[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }
