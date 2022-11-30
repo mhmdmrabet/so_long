@@ -37,7 +37,7 @@ int	ft_count_line(const char *pathname)
 	return (i);
 }
 
-int	ft_fill_map(const char *pathname, char **map, int len_map)
+int	ft_fill_map(const char *pathname, t_map_info *data)
 {
 	int		fd;
 	int		i;
@@ -45,15 +45,15 @@ int	ft_fill_map(const char *pathname, char **map, int len_map)
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	if (!map)
+	if (!data->map)
 		return (-1);
 	i = 0;
-	while (i < len_map)
+	while (i < data->len_map)
 	{
-		map[i] = get_next_line(fd);
+		data->map[i] = get_next_line(fd);
 		i++;
 	}
-	map[len_map] = NULL;
+	data->map[data->len_map] = NULL;
 	close(fd);
 	return (0);
 }

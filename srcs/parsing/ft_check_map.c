@@ -50,7 +50,7 @@ int	ft_check_line(char *line, int *exit, int *item, int *position_depart)
 	return (1);
 }
 
-int	ft_check_map(char **map)
+int	ft_check_map(t_map_info *data)
 {
 	int	exit;
 	int	item;
@@ -61,9 +61,9 @@ int	ft_check_map(char **map)
 	exit = 0;
 	position_depart = 0;
 	item = 0;
-	while (map[i])
+	while (data->map[i])
 	{
-		if (ft_check_line(map[i], &exit, &item, &position_depart) == 0)
+		if (ft_check_line(data->map[i], &exit, &item, &position_depart) == 0)
 			return (0);
 		i++;
 	}

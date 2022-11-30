@@ -19,14 +19,24 @@
 # include "./../ft_printf/ft_printf.h"
 # include "./../libft/libft.h"
 
+typedef struct s_map_info
+{
+	char	**map;
+	int		len_map;
+	int		map_p_index;
+	int		line_p_index;
+	int		len_line;
+}	t_map_info;
+
 void	ft_parsing(int fd);
-int		ft_check_map(char **map);
+int		ft_check_map(t_map_info *data);
 int		ft_count_line(const char *pathname);
-int		ft_fill_map(const char *pathname, char **map, int len_map);
+int		ft_fill_map(const char *pathname, t_map_info *data);
 int		ft_is_characters(char c);
 int		ft_is_wall_top_bottom(char *line);
 int		ft_is_border_wall(char *line);
-int		ft_is_border_map_ok(char **map, int len_map);
-int		ft_is_rectangle_map(char **map, int len_map);
+int		ft_is_border_map_ok(t_map_info *data);
+int		ft_is_rectangle_map(t_map_info *data);
+int		ft_is_position_ok(t_map_info *data);
 
 #endif

@@ -45,40 +45,40 @@ int	ft_is_border_wall(char *line)
 	return (1);
 }
 
-int	ft_is_border_map_ok(char **map, int len_map)
+int	ft_is_border_map_ok(t_map_info *data)
 {
 	int	i;
 
 	i = 0;
-	while (map[i])
+	while (data->map[i])
 	{
-		if (i == 0 || (i + 1 == len_map))
+		if (i == 0 || (i + 1 == data->len_map))
 		{
-			if (ft_is_wall_top_bottom(map[i]) == 0)
+			if (ft_is_wall_top_bottom(data->map[i]) == 0)
 				return (0);
 		}
 		else
-			if (ft_is_border_wall(map[i]) == 0)
+			if (ft_is_border_wall(data->map[i]) == 0)
 				return (0);
 		i++;
 	}
 	return (1);
 }
 
-int	ft_is_rectangle_map(char **map, int len_map)
+int	ft_is_rectangle_map(t_map_info *data)
 {
 	int	len_line;
 	int	tmp;
 	int	i;
 
 	i = 1;
-	len_line = (int)ft_strlen(map[0]);
-	if (len_line == len_map)
+	len_line = (int)ft_strlen(data->map[0]);
+	if (len_line == data->len_map)
 		return (0);
-	while (map[i])
+	while (data->map[i])
 	{
 		tmp = len_line;
-		len_line = (int)ft_strlen(map[i]);
+		len_line = (int)ft_strlen(data->map[i]);
 		if (tmp != len_line)
 			return (0);
 		i++;
