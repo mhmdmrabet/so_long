@@ -16,6 +16,7 @@
 # include <stdio.h>
 
 # include "./../get_next_line/get_next_line.h"
+# include "./../ft_printf/ft_printf.h"
 
 void	ft_parsing(int fd);
 

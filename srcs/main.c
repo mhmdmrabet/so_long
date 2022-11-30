@@ -12,19 +12,19 @@
 
 #include "./so_long.h"
 
-int	main(void)
+int	ft_count_line(const char *pathname)
 {
-	int	fd;
-
-	fd = open("./maps/Map.ber", O_RDONLY);
 	char	*line;
-	char	**map;
+	int		fd;
 	int		i;
-	int		j;
 
+	fd = open(pathname, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	i = 0;
-	j = 0;
 	line = ft_calloc(1, 1);
+	if (!line)
+		return (free(line), -1);
 	while (line)
 	{
 		free(line);
@@ -34,22 +34,47 @@ int	main(void)
 		i++;
 	}
 	close(fd);
-	fd = open("./maps/Map.ber", O_RDONLY);
-	map = ft_calloc(i + 1, sizeof(char *));
+	return (i);
+}
+
+int	ft_fill_map(const char *pathname, char **map, int len_map)
+{
+	int		fd;
+	int		i;
+
+	fd = open(pathname, O_RDONLY);
+	if (fd == -1)
+		return (-1);
 	if (!map)
 		return (-1);
-	while (j < i)
+	i = 0;
+	while (i < len_map)
 	{
-		map[j] = get_next_line(fd);
-		j++;
+		map[i] = get_next_line(fd);
+		i++;
 	}
+	map[len_map] = NULL;
+	close(fd);
+	return (0);
+}
+
+int	main(void)
+{
+	const char	*pathname = "./maps/Map.ber";
+	char		**map;
+	int			len_map;
+
+	len_map = ft_count_line(pathname);
+	if (len_map < 0)
+		return (ft_printf("Error\n"), -1);
+	map = malloc((len_map + 1) * sizeof(char *));
+	if (ft_fill_map(pathname, map, len_map) != 0)
+		return (ft_printf("Error\n"), -1);
 	printf("%s", map[0]);
 	printf("%s", map[1]);
 	printf("%s", map[2]);
 	printf("%s", map[3]);
 	printf("%s", map[4]);
 	printf("%s", map[5]);
-	return (-1);
-	close(fd);
-	return (1);
+	return (0);
 }
