@@ -36,6 +36,7 @@ typedef struct s_map_info
 
 void	ft_parsing(int fd);
 void	ft_print_map(t_map_info *data);
+int		fill_around_depart(t_map_info *data);
 int		ft_check_map(t_map_info *data);
 int		ft_count_line(const char *pathname);
 int		ft_fill_map(const char *pathname, t_map_info *data);
