@@ -30,6 +30,7 @@ int	main(void)
 	printf("%s\n", p_data->map[2]);
 	printf("%s\n", p_data->map[3]);
 	printf("%s\n", p_data->map[4]);
+	printf("%s\n", p_data->map[5]);
 	if (ft_is_rectangle_map(p_data) == 0)
 		printf("RECTANGLE : ERROR\n");
 	else

@@ -1,11 +1,17 @@
 # /* ~~~~~~ SOURCES ~~~~~~ */
 SRCS_DIR = ./srcs/
-SRCS =	parsing/ft_fill_map.c \
-		parsing/ft_check_wall.c \
-		parsing/ft_check_map.c \
-		parsing/ft_check_position.c \
+SRCS =	main.c
 
 OBJS = ${addprefix ${SRCS_DIR}, ${SRCS:.c=.o}}
+
+# /* ~~~~~~ PARSING ~~~~~~ */
+PARSING_DIR = ./srcs/parsing/
+PARSING =	ft_fill_map.c \
+			ft_check_wall.c \
+			ft_check_map.c \
+			ft_check_position.c \
+
+OBJS_PARSING = ${addprefix ${PARSING_DIR}, ${PARSING:.c=.o}}
 
 # /* ~~~~~~~ INCLUDING GNL ~~~~~~~ */
 GNL_DIR = ./get_next_line/
@@ -41,8 +47,6 @@ LPRINTF_FLAGS:= -L $(FT_PRINTF_DIR) -lftprintf
 NAME = so_long
 RM = rm -f
 
-B_OBJS = ${addprefix ${BONUS_DIR}, ${BONUS_SRCS:.c=.o}}
-
 # /* ~~~~~~~ Colors ~~~~~~~ */
 BLACK:="\033[1;30m"
 RED:="\033[1;31m"
@@ -52,27 +56,30 @@ CYAN:="\033[1;36m"
 WHITE:="\033[1;37m"
 EOC:="\033[0;0m"
 
-all:	${NAME}		
+all:	${NAME}
 
-$(NAME): $(OBJS) $(GNL_OBJS)
+%.o:	%.c
+	cc -c $< -o $@
+
+$(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING)
 	@make -C ${MLX_DIR}
 	@cd $(LIBFT_DIR) && $(MAKE)
 	@cd $(FT_PRINTF_DIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(SRCS_DIR)main.c $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
 	@echo $(GREEN) "[OK COMPILED]" $(EOC)
+	@echo $(GREEN) "[LAUNCH PROGRAMM]" $(EOC)
+		./$(NAME)
 
 clean:
 		@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
 		@${RM} ${OBJS}
-		@${RM} ${B_OBJS}
 		@${RM} -r ${OBJ_DIR} 
 		@make -C ${LIBFT_DIR} -f ${LIBFT_MAKE} clean
 
 fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
 		@${RM} ${OBJS} ${NAME}
-		@${RM} ${B_OBJS} ${BONUS} 
 
 re: 	fclean all
 

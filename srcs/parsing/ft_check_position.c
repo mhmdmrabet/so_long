@@ -29,11 +29,26 @@ int	ft_find_position(char *line, t_map_info *data)
 	return (0);
 }
 
-// int	ft_check_around_position(char **map, t_map_info *data)
-// {
-// 	if (map[data->map_p_index - 1][data->line_p_index] != '1')
-// 	return (1);
-// }
+int	ft_check_around_position(t_map_info *data)
+{
+	const int	m_index = data->map_p_index;
+	const int	l_index = data->line_p_index;
+	int			number_wall;
+
+	number_wall = 0;
+	if (data->map[m_index][l_index + 1] == '1')
+		number_wall++;
+	if (data->map[m_index][l_index - 1] == '1')
+		number_wall++;
+	if (data->map[m_index + 1][l_index] == '1')
+		number_wall++;
+	if (data->map[m_index - 1][l_index] == '1')
+		number_wall++;
+	printf("NUMBER WALL : %d\n", number_wall);
+	if (number_wall >= 4)
+		return (0);
+	return (1);
+}
 
 int	ft_is_position_ok(t_map_info *data)
 {
@@ -46,5 +61,6 @@ int	ft_is_position_ok(t_map_info *data)
 		data->map_p_index++;
 	}
 	printf("MAP[%d] | LINE[%d]\n", data->map_p_index, data->line_p_index);
+	ft_check_around_position(data);
 	return (1);
 }
