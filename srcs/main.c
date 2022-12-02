@@ -43,7 +43,11 @@ int	main(void)
 		printf("MAP : ERROR\n");
 	else
 		printf("MAP : SUCCESS\n");
-	ft_find_depart_horizontal_position(p_data);
 	ft_find_exit_horizontal_position(p_data);
+	ft_find_depart_horizontal_position(p_data);
+	printf("LEN LINE %d\n", p_data->len_line);
+	printf("LEN MAP %d\n", p_data->len_map);
+	ft_find_path(p_data);
+	ft_print_map(p_data);
 	return (0);
 }

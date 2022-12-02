@@ -20,10 +20,15 @@ int	move_down(t_map_info *data)
 
 	position_h = data->current_position_horizontal;
 	position_v = data->current_position_vertical;
+
 	if (position_h <= 0 || position_h >= data->len_map)
+		return (0);
+	if (data->prev_current_position_horizontal == position_h + 1)
 		return (0);
 	if (data->map[position_h + 1][position_v] != '1')
 	{
+		data->prev_current_position_vertical = position_v;
+		data->prev_current_position_horizontal = position_h;
 		data->current_position_horizontal = position_h + 1;
 		return (1);
 	}
@@ -39,8 +44,12 @@ int	move_up(t_map_info *data)
 	position_v = data->current_position_vertical;
 	if (position_h <= 0 || position_h >= data->len_map)
 		return (0);
+	if (data->prev_current_position_horizontal == position_h - 1)
+		return (0);
 	if (data->map[position_h - 1][position_v] != '1')
 	{
+		data->prev_current_position_vertical = position_v;
+		data->prev_current_position_horizontal = position_h;
 		data->current_position_horizontal = position_h - 1;
 		return (1);
 	}
@@ -56,8 +65,12 @@ int	move_right(t_map_info *data)
 	position_v = data->current_position_vertical;
 	if (position_h <= 0 || position_h >= data->len_map)
 		return (0);
+	if (data->prev_current_position_vertical == position_v + 1)
+		return (0);
 	if (data->map[position_h][position_v + 1] != '1')
 	{
+		data->prev_current_position_vertical = position_v;
+		data->prev_current_position_horizontal = position_h;
 		data->current_position_vertical = position_v + 1;
 		return (1);
 	}
@@ -73,8 +86,12 @@ int	move_left(t_map_info *data)
 	position_v = data->current_position_vertical;
 	if (position_h <= 0 || position_h >= data->len_map)
 		return (0);
+	if (data->prev_current_position_vertical == position_v - 1)
+		return (0);
 	if (data->map[position_h][position_v - 1] != '1')
 	{
+		data->prev_current_position_vertical = position_v;
+		data->prev_current_position_horizontal = position_h;
 		data->current_position_vertical = position_v - 1;
 		return (1);
 	}

@@ -35,6 +35,7 @@ typedef struct s_map_info
 }	t_map_info;
 
 void	ft_parsing(int fd);
+void	ft_print_map(t_map_info *data);
 int		ft_check_map(t_map_info *data);
 int		ft_count_line(const char *pathname);
 int		ft_fill_map(const char *pathname, t_map_info *data);
@@ -43,7 +44,7 @@ int		ft_is_wall_top_bottom(char *line);
 int		ft_is_border_wall(char *line);
 int		ft_is_border_map_ok(t_map_info *data);
 int		ft_is_rectangle_map(t_map_info *data);
-int		ft_find_depart_vertical_position(char *line, t_map_info *data);
+int		ft_find_depart_vert_position(char *line, t_map_info *data);
 int		ft_find_depart_horizontal_position(t_map_info *data);
 int		ft_find_path(t_map_info *data);
 int		ft_find_exit_vertical_position(char *line, t_map_info *data);

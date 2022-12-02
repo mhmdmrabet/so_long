@@ -67,19 +67,18 @@ int	ft_is_border_map_ok(t_map_info *data)
 
 int	ft_is_rectangle_map(t_map_info *data)
 {
-	int	len_line;
 	int	tmp;
 	int	i;
 
 	i = 1;
-	len_line = (int)ft_strlen(data->map[0]);
-	if (len_line == data->len_map)
+	data->len_line = (int)ft_strlen(data->map[0]);
+	if (data->len_line == data->len_map)
 		return (0);
 	while (data->map[i])
 	{
-		tmp = len_line;
-		len_line = (int)ft_strlen(data->map[i]);
-		if (tmp != len_line)
+		tmp = data->len_line;
+		data->len_line = (int)ft_strlen(data->map[i]);
+		if (tmp != data->len_line)
 			return (0);
 		i++;
 	}

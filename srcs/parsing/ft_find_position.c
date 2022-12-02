@@ -13,7 +13,7 @@
 #include "./../so_long.h"
 
 
-int	ft_find_depart_vertical_position(char *line, t_map_info *data)
+int	ft_find_depart_vert_position(char *line, t_map_info *data)
 {
 	int	i;
 
@@ -36,7 +36,7 @@ int	ft_find_depart_horizontal_position(t_map_info *data)
 	data->map_p_index = 0;
 	while (data->map[data->map_p_index])
 	{
-		if (ft_find_depart_vertical_position(data->map[data->map_p_index], data) == 1)
+		if (ft_find_depart_vert_position(data->map[data->map_p_index], data))
 		{
 			data->current_position_horizontal = data->map_p_index;
 			data->current_position_vertical = data->line_p_index;
