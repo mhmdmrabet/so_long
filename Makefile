@@ -10,6 +10,8 @@ PARSING =	ft_fill_map.c \
 			ft_check_wall.c \
 			ft_check_map.c \
 			ft_check_position.c \
+			ft_move.c \
+			ft_find_position.c \
 
 OBJS_PARSING = ${addprefix ${PARSING_DIR}, ${PARSING:.c=.o}}
 
@@ -79,7 +81,7 @@ clean:
 
 fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
-		@${RM} ${OBJS} ${NAME}
+		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) ${NAME}
 
 re: 	fclean all
 

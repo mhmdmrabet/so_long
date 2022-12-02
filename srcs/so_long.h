@@ -25,7 +25,13 @@ typedef struct s_map_info
 	int		len_map;
 	int		map_p_index;
 	int		line_p_index;
+	int		exit_position_horizontal;
+	int		exit_position_vertical;
 	int		len_line;
+	int		current_position_horizontal;
+	int		current_position_vertical;
+	int		prev_current_position_horizontal;
+	int		prev_current_position_vertical;
 }	t_map_info;
 
 void	ft_parsing(int fd);
@@ -37,6 +43,14 @@ int		ft_is_wall_top_bottom(char *line);
 int		ft_is_border_wall(char *line);
 int		ft_is_border_map_ok(t_map_info *data);
 int		ft_is_rectangle_map(t_map_info *data);
-int		ft_is_position_ok(t_map_info *data);
+int		ft_find_depart_vertical_position(char *line, t_map_info *data);
+int		ft_find_depart_horizontal_position(t_map_info *data);
+int		ft_find_path(t_map_info *data);
+int		ft_find_exit_vertical_position(char *line, t_map_info *data);
+int		ft_find_exit_horizontal_position(t_map_info *data);
+int		move_down(t_map_info *data);
+int		move_up(t_map_info *data);
+int		move_left(t_map_info *data);
+int		move_right(t_map_info *data);
 
 #endif

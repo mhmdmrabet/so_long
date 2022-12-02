@@ -43,6 +43,7 @@ int	main(void)
 		printf("MAP : ERROR\n");
 	else
 		printf("MAP : SUCCESS\n");
-	ft_is_position_ok(p_data);
+	ft_find_depart_horizontal_position(p_data);
+	ft_find_exit_horizontal_position(p_data);
 	return (0);
 }
