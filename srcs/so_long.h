@@ -37,6 +37,7 @@ typedef struct s_map_info
 void	ft_parsing(int fd);
 void	ft_print_map(t_map_info *data);
 void	check_and_replace(t_map_info *data, int i, int j, int *add_x);
+int		ft_check_map(const char *pathname, t_map_info *data);
 int		isnt_obstacle(t_map_info *data, char search, int i, int j);
 int		check_e_around_elmnt(t_map_info *data, int i, int j);
 int		is_path_valid(t_map_info *data);

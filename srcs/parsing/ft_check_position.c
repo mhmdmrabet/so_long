@@ -37,7 +37,10 @@ int	insert_in_line(t_map_info *data, int i, int j, int *add_x)
 		if (data->map[i][j] == '*')
 		{
 			if (check_e_around_elmnt(data, i, j))
+			{
+				*add_x = 1;
 				return (1);
+			}
 			check_and_replace(data, i, j - 1, add_x);
 			check_and_replace(data, i, j + 1, add_x);
 			check_and_replace(data, i + 1, j, add_x);

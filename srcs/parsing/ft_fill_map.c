@@ -44,9 +44,7 @@ int	ft_fill_map(const char *pathname, t_map_info *data)
 
 	fd = open(pathname, O_RDONLY);
 	if (fd == -1)
-		return (-1);
-	if (!data->map)
-		return (-1);
+		return (0);
 	i = 0;
 	while (i < data->len_map)
 	{
@@ -54,6 +52,8 @@ int	ft_fill_map(const char *pathname, t_map_info *data)
 		i++;
 	}
 	data->map[data->len_map] = NULL;
+	if (!data->map)
+		return (0);
 	close(fd);
-	return (0);
+	return (1);
 }

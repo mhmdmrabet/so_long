@@ -25,8 +25,8 @@ int	isnt_obstacle(t_map_info *data, char search, int i, int j)
 {
 	if (data->map[i][j] != '1' && data->map[i][j] != 'P')
 	{
-		if (data->map[i][j] != 'E' && (data->map[i][j] == '0'))
-			if (data->map[i][j] != '*')
+		if (data->map[i][j] != 'E' && data->map[i][j] != '*')
+			if ((data->map[i][j] == '0' || data->map[i][j] == 'C'))
 				return (1);
 	}
 	return (0);

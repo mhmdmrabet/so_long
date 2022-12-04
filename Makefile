@@ -13,6 +13,7 @@ PARSING =	ft_fill_map.c \
 			ft_find_position.c \
 			ft_print_map.c \
 			ft_check_around.c \
+			ft_check_map.c \
 
 OBJS_PARSING = ${addprefix ${PARSING_DIR}, ${PARSING:.c=.o}}
 
