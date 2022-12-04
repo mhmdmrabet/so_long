@@ -12,7 +12,7 @@
 
 #include "./../so_long.h"
 
-int	ft_check_map(const char *pathname, t_map_info *data)
+int	ft_check_map(char *pathname, t_map_info *data)
 {
 	const char	error[] = "Error\n";
 
@@ -32,4 +32,5 @@ int	ft_check_map(const char *pathname, t_map_info *data)
 		return (ft_printf("%sThe Map is not surrounded by walls.\n", error), 0);
 	if (is_path_valid(data) == 0)
 		return (ft_printf("%sPath Not Found.\n", error), 0);
+	return (1);
 }

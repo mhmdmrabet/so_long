@@ -12,7 +12,7 @@
 
 #include "./../so_long.h"
 
-int	ft_count_line(const char *pathname)
+int	ft_count_line(char *pathname)
 {
 	char	*line;
 	int		fd;
@@ -37,7 +37,7 @@ int	ft_count_line(const char *pathname)
 	return (i);
 }
 
-int	ft_fill_map(const char *pathname, t_map_info *data)
+int	ft_fill_map(char *pathname, t_map_info *data)
 {
 	int		fd;
 	int		i;

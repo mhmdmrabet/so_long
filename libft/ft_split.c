@@ -59,7 +59,7 @@ static char	*store_word(char const *str, char c)
 	return (word);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char *s, char c)
 {
 	char	**strs;
 	int		strs_len;
