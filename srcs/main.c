@@ -25,6 +25,18 @@ int	check_format_file(char *pathname)
 	return (0);
 }
 
+void	free_map(char **map)
+{
+	int			i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+	free(map);
+}
 
 int	main(int argc, char **argv)
 {
@@ -41,11 +53,11 @@ int	main(int argc, char **argv)
 		{
 			p_data = &data;
 			if (ft_check_map(argv[1], p_data) == 0)
-				return (0);
-			mlx = mlx_init();
-			mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
-			mlx_loop(mlx);
-			return (0);
+					return (free_map(data.map), 0);
+			// mlx = mlx_init();
+			// mlx_win = mlx_new_window(mlx, 1920, 1080, "Hello world!");
+			// mlx_loop(mlx);
+			return (free_map(data.map), 0);
 		}
 		return (ft_printf("%s", msg), 0);
 	}
