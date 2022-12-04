@@ -57,4 +57,3 @@ int	ft_fill_map(const char *pathname, t_map_info *data)
 	close(fd);
 	return (0);
 }
-

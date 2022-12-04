@@ -50,7 +50,7 @@ int	ft_check_line(char *line, int *exit, int *item, int *position_depart)
 	return (1);
 }
 
-int	ft_check_map(t_map_info *data)
+int	ft_map_has_all_needed(t_map_info *data)
 {
 	int	exit;
 	int	item;

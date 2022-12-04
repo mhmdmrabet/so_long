@@ -36,8 +36,11 @@ typedef struct s_map_info
 
 void	ft_parsing(int fd);
 void	ft_print_map(t_map_info *data);
-int		fill_around(t_map_info *data);
-int		ft_check_map(t_map_info *data);
+void	check_and_replace(t_map_info *data, int i, int j, int *add_x);
+int		isnt_obstacle(t_map_info *data, char search, int i, int j);
+int		check_e_around_elmnt(t_map_info *data, int i, int j);
+int		is_path_valid(t_map_info *data);
+int		ft_map_has_all_needed(t_map_info *data);
 int		ft_count_line(const char *pathname);
 int		ft_fill_map(const char *pathname, t_map_info *data);
 int		ft_is_characters(char c);
@@ -48,11 +51,5 @@ int		ft_is_rectangle_map(t_map_info *data);
 int		ft_find_depart_vert_position(char *line, t_map_info *data);
 int		ft_find_depart_horizontal_position(t_map_info *data);
 int		ft_find_path(t_map_info *data);
-int		ft_find_exit_vertical_position(char *line, t_map_info *data);
-int		ft_find_exit_horizontal_position(t_map_info *data);
-int		move_down(t_map_info *data);
-int		move_up(t_map_info *data);
-int		move_left(t_map_info *data);
-int		move_right(t_map_info *data);
 
 #endif
