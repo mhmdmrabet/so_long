@@ -83,6 +83,7 @@ clean:
 fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
 		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) ${NAME}
+		@make -C $(FT_PRINTF_DIR) -f $(FT_PRINTF_MAKE) clean
 
 re: 	fclean all
 
