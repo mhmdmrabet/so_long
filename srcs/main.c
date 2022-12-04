@@ -47,7 +47,6 @@ int	main(void)
 	ft_find_depart_horizontal_position(p_data);
 	printf("LEN LINE %d\n", p_data->len_line);
 	printf("LEN MAP %d\n", p_data->len_map);
-	fill_around_depart(p_data);
-	ft_print_map(p_data);
+	fill_around(p_data);
 	return (0);
 }

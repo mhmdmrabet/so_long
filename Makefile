@@ -12,6 +12,7 @@ PARSING =	ft_fill_map.c \
 			ft_check_position.c \
 			ft_move.c \
 			ft_find_position.c \
+			ft_print_map.c \
 
 OBJS_PARSING = ${addprefix ${PARSING_DIR}, ${PARSING:.c=.o}}
 
@@ -33,14 +34,14 @@ FT_PRINTF_MAKE = Makefile
 FT_PRINTF_PATH = ${FT_PRINTF_DIR}/libftprintf.a
 
 # /* ~~~~~~~ INCLUDING MINILIBX ~~~~~~~ */
-MLX_DIR = minilibx-linux
-MLX_MAKE = Makefile
-MLX_PATH = ${MLX_DIR}/libmlx.a
+#MLX_DIR = minilibx-linux
+#MLX_MAKE = Makefile
+#MLX_PATH = ${MLX_DIR}/libmlx.a
 
 # /* ~~~~~~~ COMPILING INFO ~~~~~~~ */
 CC = clang
 CFLAGS = -Wall -Werror -Wextra -g # -MMD
-MFLAGS = -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
+#MFLAGS = -ldl -lmlx -L${MLX_DIR} -lm -lXext -lX11 -Imlx $(MLX_PATH)
 IFLAGS:= -I ./includes
 LFLAGS:= -L $(LIBFT_DIR) -lft
 LPRINTF_FLAGS:= -L $(FT_PRINTF_DIR) -lftprintf 
@@ -64,7 +65,6 @@ all:	${NAME}
 	cc -c $< -o $@
 
 $(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING)
-	@make -C ${MLX_DIR}
 	@cd $(LIBFT_DIR) && $(MAKE)
 	@cd $(FT_PRINTF_DIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)

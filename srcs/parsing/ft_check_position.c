@@ -12,25 +12,6 @@
 
 #include "./../so_long.h"
 
-void	ft_print_map(t_map_info *data)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < data->len_map)
-	{
-		j = 0;
-		while (j < data->len_line)
-		{
-			printf("%c", data->map[i][j]);
-			j++;
-		}
-		printf("\n");
-		i++;
-	}
-}
-
 void	insert_around_depart(t_map_info *data, int replacement)
 {
 	int	i;
@@ -49,97 +30,130 @@ void	insert_around_depart(t_map_info *data, int replacement)
 	return ;
 }
 
-int	is_obstacle(t_map_info *data, char search, int i, int j)
+int	isnt_obstacle(t_map_info *data, char search, int i, int j)
 {
 	if (data->map[i][j] != '1' && data->map[i][j] != 'P')
 	{
 		if (data->map[i][j] != 'E' && (data->map[i][j] == '0'))
-			return (1);	
+			if (data->map[i][j] != '*')
+				return (1);
 	}
 	return (0);
 }
 
-int	insert_around(t_map_info *data, char search, int replacement)
+int	check_e_around_elmnt(t_map_info *data, int i, int j)
 {
+	if (data->map[i][j - 1] == 'E')
+		return (1);
+	if (data->map[i][j + 1] == 'E')
+		return (1);
+	if (data->map[i - 1][j] == 'E')
+		return (1);
+	if (data->map[i + 1][j] == 'E')
+		return (1);
+	return (0);
+}
+
+
+// void	check_and_replace(t_map_info *data, int i, int j, int *add_x)
+// {
+// 	if (isnt_obstacle(data, '*', i, j - 1))
+// 	{
+// 		data->map[i][j - 1] = '*';
+// 		*add_x = 1;
+// 	}
+// }
+
+int	insert_in_line(t_map_info *data, int i, int j, int *add_x)
+{
+	while (j < data->len_line)
+	{
+		if (data->map[i][j] == '*')
+		{
+			if (check_e_around_elmnt(data, i, j))
+				return (1);
+			if (isnt_obstacle(data, '*', i, j - 1))
+			{
+				data->map[i][j - 1] = '*';
+				*add_x = 1;
+			}
+			if (isnt_obstacle(data, '*', i, j + 1))
+			{
+				data->map[i][j + 1] = '*';
+				*add_x = 1;
+			}
+			if (isnt_obstacle(data, '*', i + 1, j))
+			{
+				data->map[i + 1][j] = '*';
+				*add_x = 1;
+			}
+			if (isnt_obstacle(data, '*', i - 1, j))
+			{
+				data->map[i - 1][j] = '*';
+				*add_x = 1;
+			}
+		}
+		j++;
+	}
+	return (0);
+}
+
+int	insert_around_x(t_map_info *data, int *add_x)
+{
+	int	result;
 	int	i;
 	int	j;
 
+	result = 0;
 	i = 0;
+	*add_x = 0;
 	while (i < data->len_map)
 	{
 		j = 0;
+		// result = insert_in_line(data, i, j, add_x);
 		while (j < data->len_line)
 		{
-			if (data->map[i][j] == search)
+			if (data->map[i][j] == '*')
 			{
-				if (is_obstacle(data, search, i, j - 1))
-					data->map[i][j - 1] = replacement;
-				if (is_obstacle(data, search, i, j + 1))
-					data->map[i][j + 1] = replacement;
-				if (is_obstacle(data, search, i + 1, j))
-					data->map[i + 1][j] = replacement;
-				if (is_obstacle(data, search, i - 1, j))
-					data->map[i - 1][j] = replacement;
+				if (check_e_around_elmnt(data, i, j))
+					return (1);
+				if (isnt_obstacle(data, '*', i, j - 1))
+				{
+					data->map[i][j - 1] = '*';
+					*add_x = 1;
+				}
+				if (isnt_obstacle(data, '*', i, j + 1))
+				{
+					data->map[i][j + 1] = '*';
+					*add_x = 1;
+				}
+				if (isnt_obstacle(data, '*', i + 1, j))
+				{
+					data->map[i + 1][j] = '*';
+					*add_x = 1;
+				}
+				if (isnt_obstacle(data, '*', i - 1, j))
+				{
+					data->map[i - 1][j] = '*';
+					*add_x = 1;
+				}
 			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
+	return (result);
 }
-
-// int	ft_find_path(t_map_info *data)
-// {
-// 	int	i;
-// 	int result;
-
-// 	i = '2';
-// 	result = 0;
-// 	insert_around_depart(data, i);
-// 	while (result < 4)
-// 	{
-// 		insert_around(data, i, ++i);
-// 		result++;
-// 	}
-// }
-
-int	check_around_e(t_map_info *data)
-{
-	int	i;
-	int	j;
-
-	i = data->exit_position_horizontal;
-	j = data->exit_position_vertical;
-	if (data->map[i][j - 1] == '*')
-		return (1);
-	if (data->map[i][j + 1] == '*')
-		return (1);
-	if (data->map[i - 1][j] == '*')
-		return (1);
-	if (data->map[i + 1][j] == '*')
-		return (1);
-	return (0);
-}
-
-// int check_is_possible(t_map_info *data)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = data->exit_position_horizontal;
-// 	j = data->exit_position_vertical;
-// 	if ( data->map[i][j + 1] == '1')
-
-// 	return (0);
-// }
 
 int	fill_around_depart(t_map_info *data)
 {
 	int		i;
 	int		j;
+	int		add_x;
 	char	replacement;
 
 	replacement = '*';
+	add_x = 1;
 	i = data->map_p_index;
 	j = data->line_p_index;
 	if (data->map[i + 1][j] != '1' && data->map[i + 1][j] != 'E')
@@ -150,11 +164,18 @@ int	fill_around_depart(t_map_info *data)
 		data->map[i][j + 1] = replacement;
 	if (data->map[i][j - 1] != '1' && data->map[i][j - 1] != 'E')
 		data->map[i][j - 1] = replacement;
+	return (1);
+}
+
+int	fill_around(t_map_info *data)
+{
+	int		add_x;
+
+	add_x = 1;
+	fill_around_depart(data);
 	ft_print_map(data);
-	while (check_around_e(data) == 0)
-	{
-		insert_around(data, '*', '*');
+	while (insert_around_x(data, &add_x) == 0 && add_x == 1)
 		ft_print_map(data);
-	}
+	ft_print_map(data);
 	return (1);
 }
