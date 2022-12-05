@@ -14,11 +14,43 @@
 # define SO_LONG_H
 
 # include <stdio.h>
-
+# include <X11/X.h>
+# include <X11/keysym.h>
 # include "./../get_next_line/get_next_line.h"
 # include "./../ft_printf/ft_printf.h"
 # include "./../libft/libft.h"
 # include "./../minilibx-linux/mlx.h"
+
+# define WINDOW_WIDTH 600
+# define WINDOW_HEIGHT 300
+
+# define MLX_ERROR 1
+
+typedef struct s_sprites
+{
+	void	*wall;
+}	t_sprites;
+typedef struct s_img
+{
+	void	*mlx_img;
+	char	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+typedef struct s_data_mlx
+{
+	t_sprites	*sprites;
+	void		*ptr;
+	void		*win_ptr;
+	t_img		img;
+	int			i;
+	int			j;
+	int			x;
+	int			y;
+	int			height;
+	int			width;
+}	t_data_mlx;
 
 typedef struct s_map_info
 {

@@ -101,7 +101,6 @@ int	is_path_valid(t_map_info *data)
 	add_x = 1;
 	fill_around_depart(data);
 	while (insert_around_x(data, &add_x) == 0 && add_x == 1)
-		ft_print_map(data);
-	ft_print_map(data);
+		printf("");
 	return (add_x);
 }
