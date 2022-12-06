@@ -56,51 +56,62 @@ void	create_sprites(t_data_mlx *data)
 	int	img_width;
 	int	img_height;
 
-	data->sprites->wall = mlx_xpm_file_to_image(data->ptr,
+	data->sprites.wall = mlx_xpm_file_to_image(data->ptr,
 			"wall.xpm", &img_width, &img_height);
+	data->sprites.floor = mlx_xpm_file_to_image(data->ptr,
+			"floor2.xpm", &img_width, &img_height);
+	data->sprites.perso = mlx_xpm_file_to_image(data->ptr,
+			"perso.xpm", &img_width, &img_height);
+	data->sprites.exit = mlx_xpm_file_to_image(data->ptr,
+			"exit.xpm", &img_width, &img_height);
+	data->sprites.coin = mlx_xpm_file_to_image(data->ptr,
+			"coin.xpm", &img_width, &img_height);
 }
 
 void	display_sprites_in_screen_y(t_data_mlx *data, t_map_info *map)
 {
-	void	*img;
-	void	*img2;
+
 	int		img_width;
 	int		img_height;
 
-	img = mlx_xpm_file_to_image(data->ptr,
-			"wall.xpm", &img_width, &img_height);
-	img2 = mlx_xpm_file_to_image(data->ptr,
-			"floor.xpm", &img_width, &img_height);
-	printf("LA-------------------------------------\n");
-	ft_print_map(map);
-	// if (map->map[data->x][data->y] == '1')
+	create_sprites(data);
+	if (map->map_cpy[data->y][data->x] == '1')
 		mlx_put_image_to_window(data->ptr,
-			data->win_ptr, img, data->x * 60, data->y * 60);
-	// else
-	// 	mlx_put_image_to_window(data->ptr,
-	// 		data->win_ptr, img2, data->x * 60, data->y * 60);
+			data->win_ptr, data->sprites.wall, data->x * 60, data->y * 60);
+	else if (map->map_cpy[data->y][data->x] == '0')
+		mlx_put_image_to_window(data->ptr,
+			data->win_ptr, data->sprites.floor, data->x * 60, data->y * 60);
+	else if (map->map_cpy[data->y][data->x] == 'P')
+		mlx_put_image_to_window(data->ptr,
+			data->win_ptr, data->sprites.perso, data->x * 60, data->y * 60);
+	else if (map->map_cpy[data->y][data->x] == 'E')
+		mlx_put_image_to_window(data->ptr,
+			data->win_ptr, data->sprites.exit, data->x * 60, data->y * 60);
+	else if (map->map_cpy[data->y][data->x] == 'C')
+		mlx_put_image_to_window(data->ptr,
+			data->win_ptr, data->sprites.coin, data->x * 60, data->y * 60);
 }
 
 void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map)
 {
-	data->x = 0;
-	while (data->x < 6)
+	data->y = 0;
+	while (map->map_cpy[data->y])
 	{
-		data->y = 0;
-		while (data->y < 6)
+		data->x = 0;
+		while (map->map_cpy[data->y][data->x])
 		{
 			display_sprites_in_screen_y(data, map);
-			data->y++;
+			data->x++;
 		}
-		data->x++;
+		data->y++;
 	}
 }
 
-int	display_sprites(t_data_mlx *data, t_map_info *map)
+int	display_sprites(t_test *all_data)
 {
 
-	// create_sprites(data);
-	display_sprites_in_screen(data, map);
+	ft_print_map_cpy(all_data->map);
+	display_sprites_in_screen(all_data->data, all_data->map);
 	return (0);
 }
 
@@ -118,6 +129,12 @@ void	calcul_width_height(t_data_mlx *data, t_map_info *map)
 
 int	display_game(t_data_mlx *data, t_map_info *map)
 {
+	// ft_print_map_cpy(map);
+	t_test	all_data;
+
+	all_data.data = data;
+	all_data.map = map;
+
 	int	i;
 
 	i = 0;
@@ -127,7 +144,7 @@ int	display_game(t_data_mlx *data, t_map_info *map)
 			data->i, data->j, "SO_LONG");
 	if (data->win_ptr == NULL)
 		return (free(data->ptr), MLX_ERROR);
-	mlx_hook(data->win_ptr, Expose, ExposureMask, display_sprites, data);
+	mlx_hook(data->win_ptr, Expose, ExposureMask, display_sprites, &all_data);
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
 	mlx_loop(data->ptr);
 	return (0);
@@ -148,13 +165,11 @@ int	main(int argc, char **argv)
 			p_data = &data;
 			if (ft_check_map(argv[1], p_data) == 0)
 				return (free_map(data.map), 0);
-			// data_mlx.ptr = mlx_init();
-			// if (data_mlx.ptr == NULL)
-			// 	return (MLX_ERROR);
-			// ft_fill_map(argv[1], p_data);
-			// display_game(&data_mlx, p_data);
-			// ft_print_map(p_data);
-			// return (free(data_mlx.ptr), free_map(data.map), 0);
+			data_mlx.ptr = mlx_init();
+			if (data_mlx.ptr == NULL)
+				return (MLX_ERROR);
+			display_game(&data_mlx, p_data);
+			return (free(data_mlx.ptr), free_map(data.map), 0);
 		}
 		else
 			return (ft_printf("%s", msg), 0);

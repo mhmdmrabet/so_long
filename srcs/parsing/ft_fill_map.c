@@ -49,9 +49,13 @@ int	ft_fill_map(char *pathname, t_map_info *data)
 	while (i < data->len_map)
 	{
 		data->map[i] = get_next_line(fd);
+		data->map_cpy[i] = ft_strdup(data->map[i]);
 		i++;
 	}
 	data->map[data->len_map] = NULL;
+	data->map[data->len_map] = NULL;
+	// ft_print_map_cpy(data);
+
 	if (!data->map)
 		return (0);
 	close(fd);

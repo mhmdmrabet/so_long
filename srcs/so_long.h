@@ -29,7 +29,12 @@
 typedef struct s_sprites
 {
 	void	*wall;
+	void	*floor;
+	void	*perso;
+	void	*exit;
+	void	*coin;
 }	t_sprites;
+
 typedef struct s_img
 {
 	void	*mlx_img;
@@ -38,11 +43,12 @@ typedef struct s_img
 	int		line_len;
 	int		endian;
 }	t_img;
+
 typedef struct s_data_mlx
 {
-	t_sprites	*sprites;
 	void		*ptr;
 	void		*win_ptr;
+	t_sprites	sprites;
 	t_img		img;
 	int			i;
 	int			j;
@@ -55,6 +61,7 @@ typedef struct s_data_mlx
 typedef struct s_map_info
 {
 	char	**map;
+	char	**map_cpy;
 	int		len_map;
 	int		map_p_index;
 	int		line_p_index;
@@ -67,8 +74,15 @@ typedef struct s_map_info
 	int		prev_current_position_vertical;
 }	t_map_info;
 
+typedef struct s_test
+{
+	t_data_mlx	*data;
+	t_map_info	*map;
+}	t_test;
+
 void	ft_parsing(int fd);
 void	ft_print_map(t_map_info *data);
+void	ft_print_map_cpy(t_map_info *data);
 void	check_and_replace(t_map_info *data, int i, int j, int *add_x);
 int		ft_check_map(char *pathname, t_map_info *data);
 int		isnt_obstacle(t_map_info *data, char search, int i, int j);
@@ -85,5 +99,6 @@ int		ft_is_rectangle_map(t_map_info *data);
 int		ft_find_depart_vert_position(char *line, t_map_info *data);
 int		ft_find_depart_horizontal_position(t_map_info *data);
 int		ft_find_path(t_map_info *data);
+
 
 #endif

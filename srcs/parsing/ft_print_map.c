@@ -31,3 +31,23 @@ void	ft_print_map(t_map_info *data)
 	}
 	printf("\n");
 }
+
+void	ft_print_map_cpy(t_map_info *data)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < data->len_map)
+	{
+		j = 0;
+		while (j < data->len_line)
+		{
+			printf("%c", data->map_cpy[i][j]);
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+	printf("\n");
+}

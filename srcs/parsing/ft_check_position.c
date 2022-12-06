@@ -97,10 +97,12 @@ int	fill_around_depart(t_map_info *data)
 int	is_path_valid(t_map_info *data)
 {
 	int		add_x;
+	int		i;
 
+	i = 0;
 	add_x = 1;
 	fill_around_depart(data);
 	while (insert_around_x(data, &add_x) == 0 && add_x == 1)
-		ft_print_map(data);
+		i++;
 	return (add_x);
 }
