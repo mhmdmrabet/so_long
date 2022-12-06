@@ -17,6 +17,14 @@ PARSING =	ft_fill_map.c \
 
 OBJS_PARSING = ${addprefix ${PARSING_DIR}, ${PARSING:.c=.o}}
 
+# /* ~~~~~~ DISPLAY_MAP ~~~~~~ */
+DISPLAY_MAP_DIR = ./srcs/display_map/
+DISPLAY_MAP =	display_game.c \
+			handle_event.c \
+			utils_display_map.c 
+
+OBJS_DISPLAY_MAP = ${addprefix ${DISPLAY_MAP_DIR}, ${DISPLAY_MAP:.c=.o}}
+
 # /* ~~~~~~~ INCLUDING GNL ~~~~~~~ */
 GNL_DIR = ./get_next_line/
 GNL = get_next_line.c \
@@ -65,12 +73,12 @@ all:	${NAME}
 %.o:	%.c
 	cc -c $< -o $@
 
-$(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING)
+$(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_DISPLAY_MAP)
 	@make -C ${MLX_DIR}
 	@cd $(LIBFT_DIR) && $(MAKE)
 	@cd $(FT_PRINTF_DIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_DISPLAY_MAP) $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
 	@echo $(GREEN) "[OK COMPILED]" $(EOC)
 	@echo $(GREEN) "[LAUNCH PROGRAMM]" $(EOC)
 

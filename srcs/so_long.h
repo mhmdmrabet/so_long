@@ -99,6 +99,14 @@ int		ft_is_rectangle_map(t_map_info *data);
 int		ft_find_depart_vert_position(char *line, t_map_info *data);
 int		ft_find_depart_horizontal_position(t_map_info *data);
 int		ft_find_path(t_map_info *data);
-
-
+int		check_format_file(char *pathname);
+void	free_map(char **map);
+void	destroy_free_win(t_data_mlx *data);
+int		handle_keypress(int keysym, t_data_mlx *data);
+void	create_sprites(t_data_mlx *data);
+void	display_sprites_in_screen_y(t_data_mlx *data, t_map_info *map);
+void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map);
+int		display_sprites(t_test *all_data);
+void	calcul_width_height(t_data_mlx *data, t_map_info *map);
+int		display_game(t_data_mlx *data, t_map_info *map);
 #endif

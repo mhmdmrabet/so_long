@@ -54,8 +54,6 @@ int	ft_fill_map(char *pathname, t_map_info *data)
 	}
 	data->map[data->len_map] = NULL;
 	data->map[data->len_map] = NULL;
-	// ft_print_map_cpy(data);
-
 	if (!data->map)
 		return (0);
 	close(fd);

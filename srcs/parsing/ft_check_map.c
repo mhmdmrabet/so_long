@@ -12,6 +12,19 @@
 
 #include "./../so_long.h"
 
+int	check_format_file(char *pathname)
+{
+	size_t	strlen;
+
+	strlen = ft_strlen(pathname) - 1;
+	if (pathname[strlen--] == 'r')
+		if (pathname[strlen--] == 'e')
+			if (pathname[strlen--] == 'b')
+				if (pathname[strlen--] == '.')
+					return (1);
+	return (0);
+}
+
 int	ft_check_map(char *pathname, t_map_info *data)
 {
 	const char	error[] = "Error\n";
