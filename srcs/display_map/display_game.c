@@ -6,7 +6,7 @@
 /*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:03:46 by abchaban          #+#    #+#             */
-/*   Updated: 2022/12/06 16:05:38 by abchaban         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:51:16 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map)
 	}
 }
 
-int	display_sprites(t_test *all_data)
+int	display_sprites(t_all_data *all_data)
 {
 	ft_print_map_cpy(all_data->map);
 	display_sprites_in_screen(all_data->data, all_data->map);
@@ -76,8 +76,9 @@ int	display_sprites(t_test *all_data)
 
 int	display_game(t_data_mlx *data, t_map_info *map)
 {
-	t_test	all_data;
+	t_all_data	all_data;
 
+	data->nb_movement = 1;
 	all_data.data = data;
 	all_data.map = map;
 	calcul_width_height(data, map);
@@ -86,7 +87,7 @@ int	display_game(t_data_mlx *data, t_map_info *map)
 	if (data->win_ptr == NULL)
 		return (free(data->ptr), MLX_ERROR);
 	mlx_hook(data->win_ptr, Expose, ExposureMask, display_sprites, &all_data);
-	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, data);
+	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress, &all_data);
 	mlx_loop(data->ptr);
 	return (0);
 }

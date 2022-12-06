@@ -37,8 +37,8 @@ int	ft_find_depart_horizontal_position(t_map_info *data)
 	{
 		if (ft_find_depart_vert_position(data->map[data->map_p_index], data))
 		{
-			data->current_position_horizontal = data->map_p_index;
-			data->current_position_vertical = data->line_p_index;
+			data->current_position_horizontal = data->line_p_index;
+			data->current_position_vertical = data->map_p_index;
 			break ;
 		}
 		data->map_p_index++;

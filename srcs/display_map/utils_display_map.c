@@ -6,7 +6,7 @@
 /*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:00:22 by abchaban          #+#    #+#             */
-/*   Updated: 2022/12/06 16:02:51 by abchaban         ###   ########.fr       */
+/*   Updated: 2022/12/06 17:06:43 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ void	free_map(char **map)
 	free(map);
 }
 
-void	destroy_free_win(t_data_mlx *data)
+void	destroy_free_win(t_all_data *data)
 {
-	mlx_destroy_window(data->ptr, data->win_ptr);
-	data->win_ptr = NULL;
+	mlx_destroy_window(data->data->ptr, data->data->win_ptr);
+	data->data->win_ptr = NULL;
 }
 
 void	calcul_width_height(t_data_mlx *data, t_map_info *map)

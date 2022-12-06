@@ -35,27 +35,18 @@ typedef struct s_sprites
 	void	*coin;
 }	t_sprites;
 
-typedef struct s_img
-{
-	void	*mlx_img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
 typedef struct s_data_mlx
 {
 	void		*ptr;
 	void		*win_ptr;
 	t_sprites	sprites;
-	t_img		img;
 	int			i;
 	int			j;
 	int			x;
 	int			y;
 	int			height;
 	int			width;
+	int			nb_movement;
 }	t_data_mlx;
 
 typedef struct s_map_info
@@ -74,11 +65,11 @@ typedef struct s_map_info
 	int		prev_current_position_vertical;
 }	t_map_info;
 
-typedef struct s_test
+typedef struct s_all_data
 {
 	t_data_mlx	*data;
 	t_map_info	*map;
-}	t_test;
+}	t_all_data;
 
 void	ft_parsing(int fd);
 void	ft_print_map(t_map_info *data);
@@ -101,12 +92,12 @@ int		ft_find_depart_horizontal_position(t_map_info *data);
 int		ft_find_path(t_map_info *data);
 int		check_format_file(char *pathname);
 void	free_map(char **map);
-void	destroy_free_win(t_data_mlx *data);
-int		handle_keypress(int keysym, t_data_mlx *data);
+void	destroy_free_win(t_all_data *data);
+int		handle_keypress(int keysym, t_all_data *data);
 void	create_sprites(t_data_mlx *data);
 void	display_sprites_in_screen_y(t_data_mlx *data, t_map_info *map);
 void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map);
-int		display_sprites(t_test *all_data);
+int		display_sprites(t_all_data *all_data);
 void	calcul_width_height(t_data_mlx *data, t_map_info *map);
 int		display_game(t_data_mlx *data, t_map_info *map);
 #endif
