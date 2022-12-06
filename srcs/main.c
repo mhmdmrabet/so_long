@@ -148,15 +148,16 @@ int	main(int argc, char **argv)
 			p_data = &data;
 			if (ft_check_map(argv[1], p_data) == 0)
 				return (free_map(data.map), 0);
-			data_mlx.ptr = mlx_init();
-			if (data_mlx.ptr == NULL)
-				return (MLX_ERROR);
-			ft_fill_map(argv[1], p_data);
-			display_game(&data_mlx, p_data);
-			ft_print_map(p_data);
-			return (free(data_mlx.ptr), free_map(data.map), 0);
+			// data_mlx.ptr = mlx_init();
+			// if (data_mlx.ptr == NULL)
+			// 	return (MLX_ERROR);
+			// ft_fill_map(argv[1], p_data);
+			// display_game(&data_mlx, p_data);
+			// ft_print_map(p_data);
+			// return (free(data_mlx.ptr), free_map(data.map), 0);
 		}
-		return (ft_printf("%s", msg), 0);
+		else
+			return (ft_printf("%s", msg), 0);
 	}
 	else
 		return (ft_printf("%s", msg), 0);
