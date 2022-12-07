@@ -87,7 +87,6 @@ $(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_MOVE) $(OBJS_DISPLAY_MAP)
 	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_MOVE) $(OBJS_DISPLAY_MAP) $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
 	@echo $(GREEN) "[OK COMPILED]" $(EOC)
 	@echo $(GREEN) "[LAUNCH PROGRAMM]" $(EOC)
-	valgrind --leak-check=full ./$(NAME) "Map.ber" 
 
 clean:
 		@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
