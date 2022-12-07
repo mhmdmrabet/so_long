@@ -23,13 +23,13 @@ void	ft_print_map(t_map_info *data)
 		j = 0;
 		while (j < data->len_line)
 		{
-			printf("%c", data->map[i][j]);
+			ft_printf("%c", data->map[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
 
 void	ft_print_map_cpy(t_map_info *data)
@@ -43,11 +43,11 @@ void	ft_print_map_cpy(t_map_info *data)
 		j = 0;
 		while (j < data->len_line)
 		{
-			printf("%c", data->map_cpy[i][j]);
+			ft_printf("%c", data->map_cpy[i][j]);
 			j++;
 		}
-		printf("\n");
+		ft_printf("\n");
 		i++;
 	}
-	printf("\n");
+	ft_printf("\n");
 }
