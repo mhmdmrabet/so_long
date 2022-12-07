@@ -33,7 +33,7 @@ int	ft_check_map(char *pathname, t_map_info *data)
 	if (data->len_map <= 0)
 		return (ft_printf("%sMap too small.\n", error), 0);
 	data->map = malloc((data->len_map + 1) * sizeof(char *));
-	data->map_cpy = ft_calloc((data->len_map + 1) , sizeof(char *));
+	data->map_cpy = ft_calloc(data->len_map + 1, sizeof(char *));
 	if (!data->map || !data->map)
 		return (ft_printf("%sError Malloc.\n"), 0);
 	if (ft_fill_map(pathname, data) == 0)

@@ -12,6 +12,18 @@
 
 #include "./so_long.h"
 
+int	launch_game(t_map_info *data, t_data_mlx *data_mlx)
+{
+	data_mlx->ptr = mlx_init();
+	if (data_mlx->ptr == NULL)
+		return (free_map(data->map, data->len_map),
+			free_map(data->map_cpy, data->len_map), MLX_ERROR);
+	display_game(data_mlx, data);
+	return (free(data_mlx->ptr), free_map(data->map, data->len_map),
+		free_map(data->map_cpy, data->len_map), 0);
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	t_map_info		*p_data;
@@ -28,14 +40,8 @@ int	main(int argc, char **argv)
 			init_games(&data_mlx, p_data);
 			if (ft_check_map(argv[1], p_data) == 0)
 				return (free_map(data.map, data.len_map), 0);
-			data_mlx.ptr = mlx_init();
-			if (data_mlx.ptr == NULL)
-				return (MLX_ERROR);
-			data_mlx.x = 0;
-			data_mlx.y = 0;
-			display_game(&data_mlx, p_data);
-			return (free(data_mlx.ptr), free_map(data.map, data.len_map),
-				free_map(data.map_cpy, data.len_map), 0);
+			if (launch_game(p_data, &data_mlx) == 0)
+				return (0);
 		}
 		else
 			return (ft_printf("%s", msg), 0);
