@@ -25,6 +25,12 @@ DISPLAY_MAP =	display_game.c \
 
 OBJS_DISPLAY_MAP = ${addprefix ${DISPLAY_MAP_DIR}, ${DISPLAY_MAP:.c=.o}}
 
+# /* ~~~~~~ MOVE_MAP ~~~~~~ */
+MOVE_DIR = ./srcs/move_perso/
+MOVE =	move.c \
+
+OBJS_MOVE = ${addprefix ${MOVE_DIR}, ${MOVE:.c=.o}}
+
 # /* ~~~~~~~ INCLUDING GNL ~~~~~~~ */
 GNL_DIR = ./get_next_line/
 GNL = get_next_line.c \
@@ -73,25 +79,25 @@ all:	${NAME}
 %.o:	%.c
 	cc -c $< -o $@
 
-$(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_DISPLAY_MAP)
+$(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_MOVE) $(OBJS_DISPLAY_MAP)
 	@make -C ${MLX_DIR}
 	@cd $(LIBFT_DIR) && $(MAKE)
 	@cd $(FT_PRINTF_DIR) && $(MAKE)
 	@echo $(CYAN) " - Compiling $@" $(RED)
-	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_DISPLAY_MAP) $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
+	@$(CC) $(CFLAGS) $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_MOVE) $(OBJS_DISPLAY_MAP) $(IFLAGS) $(LFLAGS) $(LPRINTF_FLAGS) -o $(NAME) $(MFLAGS) 
 	@echo $(GREEN) "[OK COMPILED]" $(EOC)
 	@echo $(GREEN) "[LAUNCH PROGRAMM]" $(EOC)
-	./$(NAME) "Map.ber" 
+	valgrind --leak-check=full ./$(NAME) "Map.ber" 
 
 clean:
 		@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
 		@${RM} ${OBJS}
-		@${RM} -r ${OBJ_DIR} 
+		@${RM} -r ${OBJ_DIR}
 		@make -C ${LIBFT_DIR} -f ${LIBFT_MAKE} clean
 
 fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
-		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) ${NAME}
+		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) $(OBJS_DISPLAY_MAP) $(OBJS_MOVE) ${NAME}
 		@make -C $(FT_PRINTF_DIR) -f $(FT_PRINTF_MAKE) clean
 
 re: 	fclean all

@@ -69,5 +69,6 @@ int	ft_map_has_all_needed(t_map_info *data)
 	}
 	if (exit != 1 || position_depart != 1 || item < 1)
 		return (0);
+	data->nb_items = item;
 	return (1);
 }

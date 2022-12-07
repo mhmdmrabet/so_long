@@ -63,6 +63,8 @@ typedef struct s_map_info
 	int		current_position_vertical;
 	int		prev_current_position_horizontal;
 	int		prev_current_position_vertical;
+	int		nb_items_collected;
+	int		nb_items;
 }	t_map_info;
 
 typedef struct s_all_data
@@ -71,33 +73,40 @@ typedef struct s_all_data
 	t_map_info	*map;
 }	t_all_data;
 
-void	ft_parsing(int fd);
-void	ft_print_map(t_map_info *data);
-void	ft_print_map_cpy(t_map_info *data);
-void	check_and_replace(t_map_info *data, int i, int j, int *add_x);
-int		ft_check_map(char *pathname, t_map_info *data);
 int		isnt_obstacle(t_map_info *data, char search, int i, int j);
-int		check_e_around_elmnt(t_map_info *data, int i, int j);
-int		is_path_valid(t_map_info *data);
-int		ft_map_has_all_needed(t_map_info *data);
-int		ft_count_line(char *pathname);
-int		ft_fill_map(char *pathname, t_map_info *data);
-int		ft_is_characters(char c);
-int		ft_is_wall_top_bottom(char *line);
-int		ft_is_border_wall(char *line);
-int		ft_is_border_map_ok(t_map_info *data);
-int		ft_is_rectangle_map(t_map_info *data);
 int		ft_find_depart_vert_position(char *line, t_map_info *data);
 int		ft_find_depart_horizontal_position(t_map_info *data);
-int		ft_find_path(t_map_info *data);
-int		check_format_file(char *pathname);
-void	free_map(char **map);
-void	destroy_free_win(t_all_data *data);
-int		handle_keypress(int keysym, t_all_data *data);
-void	create_sprites(t_data_mlx *data);
-void	display_sprites_in_screen_y(t_data_mlx *data, t_map_info *map);
-void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map);
-int		display_sprites(t_all_data *all_data);
-void	calcul_width_height(t_data_mlx *data, t_map_info *map);
+int		check_e_around_elmnt(t_map_info *data, int i, int j);
 int		display_game(t_data_mlx *data, t_map_info *map);
+int		ft_check_map(char *pathname, t_map_info *data);
+int		ft_fill_map(char *pathname, t_map_info *data);
+int		handle_keypress(int keysym, t_all_data *data);
+int		ft_map_has_all_needed(t_map_info *data);
+int		display_sprites(t_all_data *all_data);
+int		ft_is_border_map_ok(t_map_info *data);
+int		ft_is_rectangle_map(t_map_info *data);
+int		check_format_file(char *pathname);
+int		ft_is_wall_top_bottom(char *line);
+int		is_path_valid(t_map_info *data);
+int		ft_find_path(t_map_info *data);
+int		ft_count_line(char *pathname);
+int		ft_is_border_wall(char *line);
+int		ft_is_characters(char c);
+void	display_sprites_in_screen_y(t_data_mlx *data, t_map_info *map, int y, int x);
+void	check_and_replace(t_map_info *data, int i, int j, int *add_x);
+void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map);
+void	calcul_width_height(t_data_mlx *data, t_map_info *map);
+void	move_to(char direction, t_all_data *data);
+int		destroy_free_win(t_all_data *data);
+void	ft_print_map_cpy(t_map_info *data);
+void	move_bottom(t_all_data *all_data);
+void	move_right(t_all_data *all_data);
+void	create_sprites(t_data_mlx *data);
+void	move_left(t_all_data *all_data);
+void	ft_print_map(t_map_info *data);
+void	move_top(t_all_data *all_data);
+void	free_map(char **map, int size);
+void	ft_parsing(int fd);
+void	init_games(t_data_mlx *data, t_map_info *map);
+
 #endif
