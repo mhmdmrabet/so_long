@@ -1,9 +1,0 @@
-{
-	"files.associations": {
-		"algorithm": "c",
-		"x.h": "c",
-		"compare": "c",
-		"type_traits": "c",
-		"so_long.h": "c"
-	}
-}
