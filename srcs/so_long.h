@@ -92,6 +92,7 @@ int		ft_find_path(t_map_info *data);
 int		ft_count_line(char *pathname);
 int		ft_is_border_wall(char *line);
 int		ft_is_characters(char c);
+void	free_sprites(t_all_data *data);
 void	display_sprites_in_screen_y(t_data_mlx *data, t_map_info *map, int y, int x);
 void	check_and_replace(t_map_info *data, int i, int j, int *add_x);
 void	display_sprites_in_screen(t_data_mlx *data, t_map_info *map);

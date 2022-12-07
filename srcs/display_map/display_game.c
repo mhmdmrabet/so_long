@@ -6,7 +6,7 @@
 /*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:03:46 by abchaban          #+#    #+#             */
-/*   Updated: 2022/12/07 12:28:45 by mmrabet          ###   ########.fr       */
+/*   Updated: 2022/12/07 12:54:47 by mmrabet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,5 +109,6 @@ int	display_game(t_data_mlx *data, t_map_info *map)
 	mlx_hook(data->win_ptr, KeyPress, KeyPressMask, &handle_keypress,
 		&all_data);
 	mlx_loop(data->ptr);
+	free_sprites(&all_data);
 	return (0);
 }
