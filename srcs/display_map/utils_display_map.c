@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_display_map.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 16:00:22 by mmrabet           #+#    #+#             */
-/*   Updated: 2022/12/07 14:26:47 by mmrabet          ###   ########.fr       */
+/*   Created: 2022/12/07 14:45:02 by abchaban          #+#    #+#             */
+/*   Updated: 2022/12/08 11:09:48 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,18 @@ void	free_map(char **map, int size)
 
 void	free_sprites(t_all_data *data)
 {
-	free(data->data->sprites.coin);
-	free(data->data->sprites.floor);
-	free(data->data->sprites.perso);
-	free(data->data->sprites.wall);
-	free(data->data->sprites.exit);
+	mlx_destroy_image(data->data->ptr, data->data->sprites.coin);
+	mlx_destroy_image(data->data->ptr, data->data->sprites.floor);
+	mlx_destroy_image(data->data->ptr, data->data->sprites.perso);
+	mlx_destroy_image(data->data->ptr, data->data->sprites.exit);
+	mlx_destroy_image(data->data->ptr, data->data->sprites.wall);
 }
 
 int	destroy_free_win(t_all_data *data)
 {
+	free_sprites(data);
 	mlx_destroy_window(data->data->ptr, data->data->win_ptr);
+	mlx_destroy_display(data->data->ptr);
 	free_map(data->map->map_cpy, data->map->len_map);
 	free_map(data->map->map, data->map->len_map);
 	exit(EXIT_SUCCESS);
