@@ -14,14 +14,14 @@
 
 void	check_and_replace(t_map_info *data, int i, int j, int *add_x)
 {
-	if (isnt_obstacle(data, '*', i, j))
+	if (isnt_obstacle(data, i, j))
 	{
 		data->map[i][j] = '*';
 		*add_x = 1;
 	}
 }
 
-int	isnt_obstacle(t_map_info *data, char search, int i, int j)
+int	isnt_obstacle(t_map_info *data, int i, int j)
 {
 	if (data->map[i][j] != '1' && data->map[i][j] != 'P')
 	{

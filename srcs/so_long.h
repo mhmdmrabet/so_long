@@ -65,6 +65,7 @@ typedef struct s_map_info
 	int		prev_current_position_vertical;
 	int		nb_items_collected;
 	int		nb_items;
+	int		on_exit;
 }	t_map_info;
 
 typedef struct s_all_data
@@ -73,7 +74,7 @@ typedef struct s_all_data
 	t_map_info	*map;
 }	t_all_data;
 
-int		isnt_obstacle(t_map_info *data, char search, int i, int j);
+int		isnt_obstacle(t_map_info *data, int i, int j);
 int		ft_find_depart_vert_position(char *line, t_map_info *data);
 int		ft_find_depart_horizontal_position(t_map_info *data);
 int		check_e_around_elmnt(t_map_info *data, int i, int j);
@@ -110,5 +111,9 @@ void	move_top(t_all_data *all_data);
 void	free_map(char **map, int size);
 void	ft_parsing(int fd);
 void	init_games(t_data_mlx *data, t_map_info *map);
+void	update_item_on_map_top(int y, int x, t_map_info *map);
+void	update_item_on_map_left(int y, int x, t_map_info *map);
+void	update_item_on_map_rigth(int y, int x, t_map_info *map);
+void	update_item_on_map_bottom(int y, int x, t_map_info *map);
 
 #endif

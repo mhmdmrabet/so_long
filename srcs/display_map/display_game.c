@@ -6,7 +6,7 @@
 /*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:44:30 by abchaban          #+#    #+#             */
-/*   Updated: 2022/12/08 10:52:40 by abchaban         ###   ########.fr       */
+/*   Updated: 2022/12/10 20:29:52 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,6 @@ void	create_sprites(t_data_mlx *data)
 
 void	display_sprites_in_screen_y(t_data_mlx *d, t_map_info *m, int y, int x)
 {
-	int		img_width;
-	int		img_height;
-
 	if (m->map_cpy[y][x] == '1')
 		mlx_put_image_to_window(d->ptr,
 			d->win_ptr, d->sprites.wall, x * 60, y * 60);
@@ -91,6 +88,7 @@ int	display_game(t_data_mlx *data, t_map_info *map)
 	data->nb_movement = 1;
 	all_data.data = data;
 	all_data.map = map;
+	all_data.map->on_exit = 0;
 	calcul_width_height(data, map);
 	data->win_ptr = mlx_new_window(data->ptr,
 			data->i, data->j, "SO_LONG");

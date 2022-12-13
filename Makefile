@@ -28,6 +28,8 @@ OBJS_DISPLAY_MAP = ${addprefix ${DISPLAY_MAP_DIR}, ${DISPLAY_MAP:.c=.o}}
 # /* ~~~~~~ MOVE_MAP ~~~~~~ */
 MOVE_DIR = ./srcs/move_perso/
 MOVE =	move.c \
+		update_item_on_move.c
+
 
 OBJS_MOVE = ${addprefix ${MOVE_DIR}, ${MOVE:.c=.o}}
 
@@ -75,9 +77,6 @@ WHITE:="\033[1;37m"
 EOC:="\033[0;0m"
 
 all:	${NAME}
-
-%.o:	%.c
-	cc -c $< -o $@
 
 $(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_MOVE) $(OBJS_DISPLAY_MAP)
 	@make -C ${MLX_DIR}
