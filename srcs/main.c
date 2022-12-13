@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/28 18:42:28 by mmrabet           #+#    #+#             */
-/*   Updated: 2022/11/28 18:42:28 by mmrabet          ###   ########.fr       */
+/*   Created: 2022/12/07 14:46:58 by abchaban          #+#    #+#             */
+/*   Updated: 2022/12/07 14:46:58 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	main(int argc, char **argv)
 			p_data = &data;
 			init_games(&data_mlx, p_data);
 			if (ft_check_map(argv[1], p_data) == 0)
-				return (free_map(data.map, data.len_map), 0);
+				return (free_map(data.map, data.len_map),
+					free_map(data.map_cpy, data.len_map), 0);
 			if (launch_game(p_data, &data_mlx) == 0)
 				return (0);
 		}

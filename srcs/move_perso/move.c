@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmrabet <mmrabet@student.42.fr>            +#+  +:+       +#+        */
+/*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/07 08:28:31 by mmrabet           #+#    #+#             */
-/*   Updated: 2022/12/07 10:33:46 by mmrabet          ###   ########.fr       */
+/*   Created: 2022/12/07 08:28:31 by bchaban           #+#    #+#             */
+/*   Updated: 2022/12/08 11:07:33 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	move_top(t_all_data *all_data)
 	x = all_data->map->current_position_horizontal;
 	if (all_data->map->nb_items == all_data->map->nb_items_collected)
 		if (all_data->map->map_cpy[y - 1][x] == 'E')
-			exit(EXIT_SUCCESS);
+			destroy_free_win(all_data);
 	if (all_data->map->map_cpy[y - 1][x] != '1'
 		&& all_data->map->map_cpy[y - 1][x] != 'E')
 	{
@@ -44,7 +44,7 @@ void	move_bottom(t_all_data *all_data)
 	x = all_data->map->current_position_horizontal;
 	if (all_data->map->nb_items == all_data->map->nb_items_collected)
 		if (all_data->map->map_cpy[y + 1][x] == 'E')
-			exit(EXIT_SUCCESS);
+			destroy_free_win(all_data);
 	if (all_data->map->map_cpy[y + 1][x] != '1'
 		&& all_data->map->map_cpy[y + 1][x] != 'E')
 	{
@@ -67,7 +67,7 @@ void	move_right(t_all_data *all_data)
 	x = all_data->map->current_position_horizontal;
 	if (all_data->map->nb_items == all_data->map->nb_items_collected)
 		if (all_data->map->map_cpy[y][x + 1] == 'E')
-			exit(EXIT_SUCCESS);
+				destroy_free_win(all_data);			
 	if (all_data->map->map_cpy[y][x + 1] != '1'
 		&& all_data->map->map_cpy[y][x + 1] != 'E')
 	{
@@ -90,7 +90,7 @@ void	move_left(t_all_data *all_data)
 	x = all_data->map->current_position_horizontal;
 	if (all_data->map->nb_items == all_data->map->nb_items_collected)
 		if (all_data->map->map_cpy[y][x - 1] == 'E')
-			exit(EXIT_SUCCESS);
+			destroy_free_win(all_data);
 	if (all_data->map->map_cpy[y][x - 1] != '1'
 		&& all_data->map->map_cpy[y][x - 1] != 'E')
 	{
