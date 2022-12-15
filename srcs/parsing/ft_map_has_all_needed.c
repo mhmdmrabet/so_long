@@ -27,25 +27,29 @@ int	ft_is_characters(char c)
 	return (0);
 }
 
-int	ft_check_line(char *line, int *exit, int *item, int *position_depart)
+int	ft_check_line(int i, int *exit, int *position_depart, t_map_info *data)
 {
-	int	i;
+	int	j;
 
-	i = 0;
-	while (line[i])
+	j = 0;
+	while (data->map[i][j])
 	{
-		if (ft_is_characters(line[i]) == 1)
+		if (ft_is_characters(data->map[i][j]) == 1)
 		{
-			if (line[i] == 'E')
+			if (data->map[i][j] == 'E')
+			{
 				*exit = *exit + 1;
-			else if (line[i] == 'C')
-				*item = *item + 1;
-			else if (line[i] == 'P')
+				data->exit_position_horizontal = j;
+				data->exit_position_vertical = i;
+			}
+			else if (data->map[i][j] == 'C')
+				data->nb_items = data->nb_items + 1;
+			else if (data->map[i][j] == 'P')
 				*position_depart = *position_depart + 1;
 		}
 		else
 			return (0);
-		i++;
+		j++;
 	}
 	return (1);
 }
@@ -61,14 +65,14 @@ int	ft_map_has_all_needed(t_map_info *data)
 	exit = 0;
 	position_depart = 0;
 	item = 0;
+	data->nb_items = 0;
 	while (data->map[i])
 	{
-		if (ft_check_line(data->map[i], &exit, &item, &position_depart) == 0)
+		if (ft_check_line(i, &exit, &position_depart, data) == 0)
 			return (0);
 		i++;
 	}
-	if (exit != 1 || position_depart != 1 || item < 1)
+	if (exit != 1 || position_depart != 1 || data->nb_items < 1)
 		return (0);
-	data->nb_items = item;
 	return (1);
 }

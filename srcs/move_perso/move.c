@@ -6,7 +6,7 @@
 /*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 08:28:31 by bchaban           #+#    #+#             */
-/*   Updated: 2022/12/13 15:51:01 by abchaban         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:51:20 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	move_top(t_all_data *all_data)
 	y = all_data->map->current_position_vertical;
 	x = all_data->map->current_position_horizontal;
 	if (all_data->map->map_cpy[y - 1][x] == 'E')
-		if (all_data->map->nb_items == all_data->map->nb_items_collected)		
-			destroy_free_win(all_data);		
+		if (all_data->map->nb_items == all_data->map->nb_items_collected)
+			destroy_free_win(all_data);
 	if (all_data->map->map_cpy[y - 1][x] != '1')
 	{
 		if (all_data->map->map_cpy[y - 1][x] == 'C')
@@ -68,7 +68,7 @@ void	move_right(t_all_data *all_data)
 	{
 		if (all_data->map->map_cpy[y][x + 1] == 'C')
 				all_data->map->nb_items_collected++;
-		update_item_on_map_rigth(y, x, all_data->map);	
+		update_item_on_map_rigth(y, x, all_data->map);
 		all_data->map->current_position_horizontal = x + 1;
 		display_sprites(all_data);
 		ft_printf("%d\n", all_data->data->nb_movement++);

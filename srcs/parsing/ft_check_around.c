@@ -23,6 +23,8 @@ void	check_and_replace(t_map_info *data, int i, int j, int *add_x)
 
 int	isnt_obstacle(t_map_info *data, int i, int j)
 {
+	if (data->map[i][j] == 'C')
+		data->nb_accesible_collectible = data->nb_accesible_collectible + 1;
 	if (data->map[i][j] != '1' && data->map[i][j] != 'P')
 	{
 		if (data->map[i][j] != 'E' && data->map[i][j] != '*')
@@ -41,6 +43,24 @@ int	check_e_around_elmnt(t_map_info *data, int i, int j)
 	if (data->map[i - 1][j] == 'E')
 		return (1);
 	if (data->map[i + 1][j] == 'E')
+		return (1);
+	return (0);
+}
+
+int	check_if_find_e(t_map_info *map)
+{
+	int	x;
+	int	j;
+
+	x = map->exit_position_vertical;
+	j = map->exit_position_horizontal;
+	if (map->map[x][j - 1] == '*')
+		return (1);
+	if (map->map[x][j + 1] == '*')
+		return (1);
+	if (map->map[x - 1][j] == '*')
+		return (1);
+	if (map->map[x + 1][j] == '*')
 		return (1);
 	return (0);
 }

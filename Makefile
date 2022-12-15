@@ -89,15 +89,16 @@ $(NAME): $(OBJS) $(GNL_OBJS) $(OBJS_PARSING) $(OBJS_MOVE) $(OBJS_DISPLAY_MAP)
 
 clean:
 		@echo $(PURPLE) "[🧹Cleaning...🧹]" $(EOC)
-		@${RM} ${OBJS}
+		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) $(OBJS_DISPLAY_MAP) $(OBJS_MOVE) ${NAME}
 		@${RM} -r ${OBJ_DIR}
 		@make -C ${LIBFT_DIR} -f ${LIBFT_MAKE} clean
 
 fclean: clean
 		@echo $(PURPLE) "[🧹FCleaning...🧹]" $(EOC)
 		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) $(OBJS_DISPLAY_MAP) $(OBJS_MOVE) ${NAME}
-		@make -C $(FT_PRINTF_DIR) -f $(FT_PRINTF_MAKE) clean
-
+		@make -C $(FT_PRINTF_DIR) -f $(FT_PRINTF_MAKE)  
+		@cd $(LIBFT_DIR) && $(MAKE) fclean
+		
 re: 	fclean all
 
 .PHONY: all clean fclean re

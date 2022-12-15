@@ -36,11 +36,6 @@ int	insert_in_line(t_map_info *data, int i, int j, int *add_x)
 	{
 		if (data->map[i][j] == '*')
 		{
-			if (check_e_around_elmnt(data, i, j))
-			{
-				*add_x = 1;
-				return (1);
-			}
 			check_and_replace(data, i, j - 1, add_x);
 			check_and_replace(data, i, j + 1, add_x);
 			check_and_replace(data, i + 1, j, add_x);
@@ -83,7 +78,10 @@ int	fill_around_depart(t_map_info *data)
 	ft_find_depart_horizontal_position(data);
 	i = data->map_p_index;
 	j = data->line_p_index;
-	if (data->map[i + 1][j] != '1' && data->map[i + 1][j] != 'E' )
+	if (data->map[i + 1][j] == 'C' || data->map[i - 1][j] == 'C'
+		|| data->map[i][j + 1] == 'C' || data->map[i][j - 1] == 'C')
+		data->nb_accesible_collectible = data->nb_accesible_collectible + 1;
+	if (data->map[i + 1][j] != '1' && data->map[i + 1][j] != 'E')
 		data->map[i + 1][j] = replacement;
 	if (data->map[i - 1][j] != '1' && data->map[i - 1][j] != 'E')
 		data->map[i - 1][j] = replacement;
@@ -98,11 +96,23 @@ int	is_path_valid(t_map_info *data)
 {
 	int		add_x;
 	int		i;
+	int		x;
+	int		j;
 
 	i = 0;
 	add_x = 1;
 	fill_around_depart(data);
+	x = data->current_position_horizontal;
+	j = data->current_position_vertical;
 	while (insert_around_x(data, &add_x) == 0 && add_x == 1)
 		i++;
+	if (data->nb_accesible_collectible == data->nb_items)
+	{
+		if ((data->map[j + 1][x] == 'E' || data->map[j - 1][x] == 'E'
+			|| data->map[j][x + 1] == 'E' || data->map[j][x - 1] == 'E'))
+			return (1);
+		if (check_if_find_e(data))
+			return (1);
+	}
 	return (add_x);
 }

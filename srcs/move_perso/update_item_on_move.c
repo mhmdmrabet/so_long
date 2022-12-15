@@ -6,7 +6,7 @@
 /*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/10 20:52:50 by abchaban          #+#    #+#             */
-/*   Updated: 2022/12/13 12:53:46 by abchaban         ###   ########.fr       */
+/*   Updated: 2022/12/15 11:50:46 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	update_item_on_map_top(int y, int x, t_map_info *map)
 	{
 		map->map_cpy[y - 1][x] = 'P';
 		map->map_cpy[y][x] = 'E';
-		map->on_exit = 0;		
+		map->on_exit = 0;
 	}
 	else if (map->map_cpy[y - 1][x] == 'E')
 	{

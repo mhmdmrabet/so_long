@@ -65,6 +65,7 @@ typedef struct s_map_info
 	int		prev_current_position_vertical;
 	int		nb_items_collected;
 	int		nb_items;
+	int		nb_accesible_collectible;
 	int		on_exit;
 }	t_map_info;
 
@@ -115,5 +116,6 @@ void	update_item_on_map_top(int y, int x, t_map_info *map);
 void	update_item_on_map_left(int y, int x, t_map_info *map);
 void	update_item_on_map_rigth(int y, int x, t_map_info *map);
 void	update_item_on_map_bottom(int y, int x, t_map_info *map);
+int		check_if_find_e(t_map_info *map);
 
 #endif
