@@ -98,7 +98,8 @@ fclean: clean
 		@${RM} ${OBJS} $(OBJS_PARSING) $(GNL_OBJS) $(OBJS_DISPLAY_MAP) $(OBJS_MOVE) ${NAME}
 		@make -C $(FT_PRINTF_DIR) -f $(FT_PRINTF_MAKE)  
 		@cd $(LIBFT_DIR) && $(MAKE) fclean
-		
+		@cd $(FT_PRINTF_DIR) && $(MAKE) fclean
+
 re: 	fclean all
 
 .PHONY: all clean fclean re
