@@ -6,7 +6,7 @@
 /*   By: abchaban <abchaban@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/07 14:44:30 by abchaban          #+#    #+#             */
-/*   Updated: 2022/12/15 10:25:32 by abchaban         ###   ########.fr       */
+/*   Updated: 2022/12/15 12:01:58 by abchaban         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	init_games(t_data_mlx *data, t_map_info *map)
 {
 	data->x = 0;
 	data->y = 0;
+	map->nb_accesible_collectible = 0;
 	data->sprites.wall = NULL;
 	data->sprites.floor = NULL;
 	data->sprites.perso = NULL;
